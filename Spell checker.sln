@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spell checker", "Spell checker\Spell checker.csproj", "{FBBE9827-3058-4983-B7FA-AA40A4CABFFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpellCheckerTests", "SpellCheckerTests\SpellCheckerTests.csproj", "{FAD3DB27-EB53-43BD-B6A1-E291500931C8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FBBE9827-3058-4983-B7FA-AA40A4CABFFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBBE9827-3058-4983-B7FA-AA40A4CABFFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBBE9827-3058-4983-B7FA-AA40A4CABFFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBBE9827-3058-4983-B7FA-AA40A4CABFFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAD3DB27-EB53-43BD-B6A1-E291500931C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAD3DB27-EB53-43BD-B6A1-E291500931C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAD3DB27-EB53-43BD-B6A1-E291500931C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAD3DB27-EB53-43BD-B6A1-E291500931C8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
