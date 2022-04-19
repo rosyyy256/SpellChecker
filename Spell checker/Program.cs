@@ -6,12 +6,7 @@ namespace Spell_checker
     {
         static void Main(string[] args)
         {
-            for (var i = 0; i < 30; i++)
-            {
-                Console.WriteLine($"{i} - {i & 1}");
-            }
-
-            Console.ReadKey();
+            InputReader.Start();
         }
     }
 }
