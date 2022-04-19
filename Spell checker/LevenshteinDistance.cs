@@ -12,8 +12,8 @@ namespace Spell_checker
             if (source == null || target == null) throw new ArgumentNullException();
             var distance = new int[sourceLength + 1, targetLength + 1];
 
-            for (var i = 0; i <= sourceLength; i++) { distance[i, 0] = i; }
-            for (var j = 0; j <= targetLength; j++) { distance[0, j] = j; }
+            for (var i = 0; i <= sourceLength; i++) distance[i, 0] = i;
+            for (var j = 0; j <= targetLength; j++) distance[0, j] = j;
 
             for (var i = 1; i <= sourceLength; i++)
             {
