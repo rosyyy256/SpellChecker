@@ -10,7 +10,7 @@ namespace Spell_checker
         /// <param name="toAdd">List of correct elements</param>
         public void Add(IEnumerable<T> toAdd);
         
-        /// <param name="toCheck">Element form to check</param>
+        /// <param name="toCheck">Element to check</param>
         /// <returns>
         /// Correct form in case if it in list of correct elements;<br/>
         /// {W1 W2 ...} in case if were found several forms;<br/>
