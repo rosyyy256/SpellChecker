@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XPwc5onUt1NOBklCfe7SH2gt20aNBL25wKzDgZhVu9A06U6PW3PuRGAZhcAYeOOgM24zBNVy9kLe7Nwo8rphgg==",
+  "dgSpecHash": "JlgfOiYcVzhE02VsQ7OYvOltOpH8QNZ5sLrmvyE/oeeBL0kHPvfoVpisd7oiO6pQ2YlyvhEuqh6OPFMFt40wzw==",
   "success": true,
-  "projectFilePath": "D:\\local projects\\Spell checker\\Spell checker\\Spell checker.csproj",
+  "projectFilePath": "D:\\local projects\\CQG\\Spell checker\\Spell checker\\Spell checker.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\rosyyy\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.12\\microsoft.netcore.app.host.win-x64.5.0.12.nupkg.sha512"
   ],

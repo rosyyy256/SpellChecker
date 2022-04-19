@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "J68fNvu8UkjbyLTfyq3xaOWRYZG5pdY8Tf4rjxs1Z0L1fH87EgiqV6DqsQe1CwcFiME3vBmOBq2dJz77ZOrj+g==",
+  "dgSpecHash": "dq5e8Q1Bhg1eQq72BXNqu26U7TizetFeph3R706CHP0Jd3jo9XXi/H49v5e4fR0is6Sb7bvi+UClAuaGiM4V2Q==",
   "success": true,
-  "projectFilePath": "D:\\local projects\\Spell checker\\SpellCheckerTests\\SpellCheckerTests.csproj",
+  "projectFilePath": "D:\\local projects\\CQG\\Spell checker\\SpellCheckerTests\\SpellCheckerTests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\rosyyy\\.nuget\\packages\\coverlet.collector\\3.1.0\\coverlet.collector.3.1.0.nupkg.sha512",
     "C:\\Users\\rosyyy\\.nuget\\packages\\microsoft.codecoverage\\16.11.0\\microsoft.codecoverage.16.11.0.nupkg.sha512",

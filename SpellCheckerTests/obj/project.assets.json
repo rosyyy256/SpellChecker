@@ -3876,11 +3876,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\local projects\\Spell checker\\SpellCheckerTests\\SpellCheckerTests.csproj",
+      "projectUniqueName": "D:\\local projects\\CQG\\Spell checker\\SpellCheckerTests\\SpellCheckerTests.csproj",
       "projectName": "SpellCheckerTests",
-      "projectPath": "D:\\local projects\\Spell checker\\SpellCheckerTests\\SpellCheckerTests.csproj",
+      "projectPath": "D:\\local projects\\CQG\\Spell checker\\SpellCheckerTests\\SpellCheckerTests.csproj",
       "packagesPath": "C:\\Users\\rosyyy\\.nuget\\packages\\",
-      "outputPath": "D:\\local projects\\Spell checker\\SpellCheckerTests\\obj\\",
+      "outputPath": "D:\\local projects\\CQG\\Spell checker\\SpellCheckerTests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -3901,8 +3901,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "D:\\local projects\\Spell checker\\Spell checker\\Spell checker.csproj": {
-              "projectPath": "D:\\local projects\\Spell checker\\Spell checker\\Spell checker.csproj"
+            "D:\\local projects\\CQG\\Spell checker\\Spell checker\\Spell checker.csproj": {
+              "projectPath": "D:\\local projects\\CQG\\Spell checker\\Spell checker\\Spell checker.csproj"
             }
           }
         }

@@ -6,31 +6,16 @@ using Spell_checker;
 
 namespace SpellCheckerTests
 {
+    [TestFixture]
     public class SpellCheckerTests
     {
         private string dictionary = "rain spain plain plaint pain main mainly the in on fall falls his was";
-        private string input = "hte rame in pain fells mainy oon teh lain was hints pliant";
         private List<string> splitDictionary;
-        private List<string> splitInput;
-        
+
         [SetUp]
         public void Setup()
         {
             splitDictionary = dictionary.Split(' ', StringSplitOptions.RemoveEmptyEntries).ToList();
-            splitInput = input.Split(' ', StringSplitOptions.RemoveEmptyEntries).ToList();
-        }
-        
-
-        [TestCase("hte", "the", 2)]
-        [TestCase("teh", "the", 2)]
-        [TestCase("mainy", "main", 1)]
-        [TestCase("mainy", "mainly", 1)]
-        [TestCase("fells", "falls", 2)]
-        [TestCase("hte", "his", 4)]
-        public void LevenshteinDistanceIsCorrectTest(string source, string target, int expected)
-        {
-            var actual = LevenshteinDistance.GetDistance(source, target);
-            Assert.AreEqual(expected, actual);
         }
 
         [TestCase("hte", "the")]
@@ -42,9 +27,25 @@ namespace SpellCheckerTests
         [TestCase("lain", "plain")]
         [TestCase("hints", "{hints?}")]
         [TestCase("pliant", "plaint")]
-        public void SpellCheckerOnSingleWordsTest(string source, string expected)
+        [TestCase("in", "in")]
+        [TestCase("pain", "pain")]
+        public void OnSingleWordsTest(string source, string expected)
         {
-            var spellChecker = new SpellChecker(splitDictionary);
+            var spellChecker = new SpellChecker();
+            spellChecker.Add(splitDictionary);
+            var actual = spellChecker.GetCorrectForm(source);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase("his", "hints")]
+        [TestCase("abc", "abcde")]
+        [TestCase("example", "exple")]
+        [TestCase("example", "examabple")]
+        [TestCase("example", "exampleab")]
+        public void DontReturnCorrectionsOnAdjacentCharacters(string dict, string source)
+        {
+            var spellChecker = new SpellChecker(dict.Split(' ', StringSplitOptions.RemoveEmptyEntries));
+            var expected = "{" + source + "?}";
             var actual = spellChecker.GetCorrectForm(source);
             Assert.AreEqual(expected, actual);
         }

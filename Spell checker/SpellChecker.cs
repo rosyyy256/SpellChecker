@@ -7,13 +7,11 @@ namespace Spell_checker
 {
     public class SpellChecker : ICorrectnessChecker<string>
     {
-        private List<string> _orderedCorrectForms;
         private readonly HashSet<string> _nonOrderedForms;
         private readonly Dictionary<int, List<string>> _correctForms;
 
         public SpellChecker()
         {
-            _orderedCorrectForms = new List<string>();
             _nonOrderedForms = new HashSet<string>();
             _correctForms = new Dictionary<int, List<string>>();
         }
@@ -24,60 +22,79 @@ namespace Spell_checker
             Add(toAdd);
         }
 
+        /// <param name="toAdd">Strings that supposed to be added to list of correct words</param>
         public void Add(IEnumerable<string> toAdd)
         {
-            _orderedCorrectForms.AddRange(toAdd.Select(str => str.ToLower()));
-            foreach (var singleForm in toAdd)
+            foreach (var form in toAdd)
             {
-                _nonOrderedForms.Add(singleForm.ToLower());
-                if (!_correctForms.ContainsKey(singleForm.Length))
-                    _correctForms[singleForm.Length] = new List<string>();
-                _correctForms[singleForm.Length].Add(singleForm.ToLower());
+                if (string.IsNullOrWhiteSpace(form)) throw new ArgumentException();
+                
+                var loweredSingleForm = form.ToLower(); 
+                _nonOrderedForms.Add(loweredSingleForm);
+                
+                if (!_correctForms.ContainsKey(form.Length))
+                    _correctForms[form.Length] = new List<string>();
+                _correctForms[form.Length].Add(loweredSingleForm);
             }
-            
-            OrderCorrectForms();
         }
 
+        /// <param name="source">Element to check</param>
+        /// <returns>
+        /// Correct form in case if it in list of correct elements;<br/>
+        /// {W1 W2 ...} in case if were found several forms;<br/>
+        /// {W?} in case if no corrections was found;
+        /// </returns>
         public string GetCorrectForm(string source)
         {
-            var correctForms = GetPossibleForms(source)
-                .Where(form => LevenshteinDistance.GetDistance(source, form) <= 2);
-
-            var correctFormsCount = correctForms.Count();
-            if (correctFormsCount == 0) return $"{{{source}}}?";
-            if (correctFormsCount == 1) return correctForms.First();
-            var sb = new StringBuilder(string.Concat(correctForms, ' '));
-            sb.Append('{');
-            sb.Append(string.Concat(correctForms, ' '));
-            sb.Append('}');
-            return sb.ToString();
+            if (string.IsNullOrWhiteSpace(source)) throw new ArgumentException();
+            
+            var possibleForms = GetPossibleFormsWithLevDistance(source).ToList();
+            if (!possibleForms.Any()) return $"{{{source}?}}";
+            var minDist = possibleForms.Min(form => form.levDist);
+            var correctForms = possibleForms.Where(form => form.levDist == minDist).ToList();
+            
+            if (correctForms.Count == 1) return correctForms[0].form;
+            return "{" + string.Join(" ", correctForms.Select(form => form.form)) + "}";
         }
 
-        private List<string> GetPossibleForms(string source)
+        private IEnumerable<(string form, int levDist)> GetPossibleFormsWithLevDistance(string source)
         {
             var sourceLength = source.Length;
             var minLength = sourceLength < 3 ? 1 : sourceLength - 2;
             var maxLength = sourceLength + 2;
-            var possibleForms = new List<string>();
+            var possibleForms = new List<(string, int)>();
             
             for (var i = minLength; i <= maxLength; i++)
             {
-                var values = new List<string>();
-                if (_correctForms.TryGetValue(i, out values))
+                if (_correctForms.TryGetValue(i, out var values))
                 {
-                    possibleForms.AddRange(values);
+                    foreach (var value in values)
+                    {
+                        var levDistance = LevenshteinDistance.GetDistance(source, value);
+                        if (levDistance <= 2)
+                        {
+                            if (levDistance == 2 && !IsCorrectionsValid(source, value)) continue; 
+                            possibleForms.Add((value, levDistance));
+                        }
+                    }
                 }
             }
 
             return possibleForms;
         }
 
-        private void OrderCorrectForms()
+        /// <summary>
+        /// Is the edits are not both insertions or both deletions
+        /// and made on adjacent characters
+        /// </summary>
+        private static bool IsCorrectionsValid(string source, string correct)
         {
-            _orderedCorrectForms = _orderedCorrectForms
-                .OrderBy(element => element.Length)
-                .ThenBy(element => element)
-                .ToList();
+            if (Math.Abs(source.Length - correct.Length) < 2) return true;
+
+            var longerStr = source.Length > correct.Length ? source : correct;
+            var shorterStr = longerStr == source ? correct : source;
+
+            return shorterStr.Where((t, i) => longerStr[i] != t && t == longerStr[i + 1]).Any();
         }
     }
 }
